@@ -203,7 +203,8 @@ void AudioStreamMPC::update() {
 
 					loops++;
 					mpc_demux_exit(demux);
-					_seek_file(0);
+					// _seek_file(0);
+					_seek_file( int(loop_restart_time * 44100.0) );
 					demux = mpc_demux_init(&reader);
 					//do loop somehow
 
@@ -296,6 +297,10 @@ bool AudioStreamMPC::has_loop() const  {
 	return loop;
 }
 
+void AudioStreamMPC::set_loop_restart_time(float p_time) {
+	loop_restart_time = p_time;
+}
+
 float AudioStreamMPC::get_length() const {
 
 	return 0;
@@ -352,6 +357,7 @@ AudioStreamMPC::AudioStreamMPC() {
 	reader.canseek=_mpc_canseek;
 	loops=0;
 
+	loop_restart_time = 0.0;
 }
 
 AudioStreamMPC::~AudioStreamMPC() {
