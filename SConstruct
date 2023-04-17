@@ -57,8 +57,8 @@ custom_tools=['default']
 if (os.name=="posix"):
 	pass
 elif (os.name=="nt"):
-    if (os.getenv("VSINSTALLDIR")==None):
-	    custom_tools=['mingw']
+		if (os.getenv("VSINSTALLDIR")==None):
+			custom_tools=['mingw']
 
 env_base=Environment(tools=custom_tools,ENV = {'PATH' : os.environ['PATH']});
 #env_base=Environment(tools=custom_tools);
@@ -110,6 +110,7 @@ opts.Add('pvr','PVR (PowerVR) Texture loader support (yes/no)','yes')
 opts.Add('builtin_zlib','Use built-in zlib (yes/no)','yes')
 opts.Add('openssl','Use OpenSSL (yes/no/builtin)','no')
 opts.Add('musepack','Musepack Audio (yes/no)','yes')
+opts.Add('opus','Build Opus Audio Format Support: (yes/no)','yes')
 opts.Add("CXX", "Compiler");
 opts.Add("CCFLAGS", "Custom flags for the C++ compiler");
 opts.Add("CFLAGS", "Custom flags for the C compiler");
@@ -195,7 +196,7 @@ if selected_platform in platform_list:
 		if not (f[0] in ARGUMENTS): # allow command line to override platform flags
 			env[f[0]] = f[1]
 
-        #env['platform_libsuffix'] = env['LIBSUFFIX']
+				#env['platform_libsuffix'] = env['LIBSUFFIX']
 
 	suffix="."+selected_platform
 
@@ -250,11 +251,14 @@ if selected_platform in platform_list:
 
 	if (env['musepack']=='yes'):
 		env.Append(CPPFLAGS=['-DMUSEPACK_ENABLED']);
-        if (env['openssl']!='no'):
-            env.Append(CPPFLAGS=['-DOPENSSL_ENABLED']);
-            if (env['openssl']=="builtin"):
-                env.Append(CPPPATH=['#drivers/builtin_openssl2'])
+		if (env['openssl']!='no'):
+				env.Append(CPPFLAGS=['-DOPENSSL_ENABLED']);
+				if (env['openssl']=="builtin"):
+					env.Append(CPPPATH=['#drivers/builtin_openssl2'])
 
+	if (env_base['opus']=='yes'):
+		env.Append(CPPFLAGS=['-DOPUS_ENABLED']);
+	
 	if (env["builtin_zlib"]=='yes'):
 		env.Append(CPPPATH=['#drivers/builtin_zlib/zlib'])
 
