@@ -58,7 +58,7 @@ if (os.name=="posix"):
 	pass
 elif (os.name=="nt"):
     if (os.getenv("VSINSTALLDIR")==None):
-	custom_tools=['mingw']
+	    custom_tools=['mingw']
 
 env_base=Environment(tools=custom_tools,ENV = {'PATH' : os.environ['PATH']});
 #env_base=Environment(tools=custom_tools);

@@ -1,0 +1,26 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "echo",
+			"type": "shell",
+			"command": "echo Hello"
+		},
+		{
+			"label": "build",
+			"group": "build",
+			"type": "shell",
+			"command": "/Users/m01_caiman/programs/scons/scons-local-2.5.1/scons.py",
+			"args": [
+				"target=debug",
+				"dev_build=yes",
+				"theora=no",
+				"-j8",
+				"platform=osx",
+				"bits=64"
+			]
+		}
+	]
+}
