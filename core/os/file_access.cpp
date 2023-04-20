@@ -277,12 +277,14 @@ String FileAccess::get_line() const {
 	return String::utf8(line.get_data());
 }
 
+
+// get_csv_line newline fix originally implemented in https://github.com/godotengine/godot/pull/4337
 Vector<String> FileAccess::get_csv_line() const {
 
 	String l;
 	int qc=0;
 	do {
-		l+=get_line();
+		l+=get_line() + "\n";
 		qc=0;
 		for(int i=0;i<l.length();i++) {
 
@@ -292,6 +294,8 @@ Vector<String> FileAccess::get_csv_line() const {
 
 
 	} while (qc%2);
+
+	l = l.substr(0, l.length() - 1);
 
 	Vector<String> strings;
 
