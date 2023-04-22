@@ -1,0 +1,4 @@
+launch vs 2013 (NEEDS TO BE 2013) native x86 tools (they don't show up in windows search for some reason)
+then cd to the engine root folder and run the following command
+
+py -2 tools\scons\scons.py -j1 tools=yes platform=windows bits=32 target=release_debug theora=no opus=yes optimized=yes
