@@ -1,0 +1,6 @@
+launch vs 2013 (NEEDS TO BE 2013) native x86 tools (they don't show up in windows search for some reason)
+then cd to the engine root folder and run the following command
+
+building with more than 1 thread is BROKEN!! DO NOT USE MORE THAN 1!!!!!!
+
+py -2 tools\scons\scons.py -j1 tools=yes platform=windows bits=32 target=release_debug theora=no opus=yes optimized=yes
